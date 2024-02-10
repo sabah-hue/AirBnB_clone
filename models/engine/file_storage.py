@@ -4,6 +4,7 @@
 from models.base_model import BaseModel
 import json
 
+
 class FileStorage:
     """ to store data and retrive again """
     def __init__(self, file_path, objects):
