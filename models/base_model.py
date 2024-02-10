@@ -4,6 +4,7 @@
 import uuid
 from datetime import datetime
 
+
 class BaseModel:
     """ base class for other classes """
     def __init__(self, *args, **kwargs):
@@ -16,11 +17,11 @@ class BaseModel:
             for key, value in kwargs.items():
                 if key != "__class__":
                     if key == "created_at":
-                        value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
-                        setattr(self, "created_at", value)
+                        v = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
+                        setattr(self, "created_at", v)
                     if key == "updated_at":
-                        value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
-                        setattr(self, "updated_at", value)
+                        v = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
+                        setattr(self, "updated_at", v)
                     setattr(self, key, value)
                 if "id" not in kwargs.keys():
                     id_value = str(uuid.uuid4())
@@ -31,7 +32,6 @@ class BaseModel:
                 if "updated_at" not in kwargs.keys():
                     value = datetime.now()
                     setattr(self, "updated_at", value)
-
 
     def __str__(self):
         """ print string """
