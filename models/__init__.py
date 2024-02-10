@@ -1,1 +1,1 @@
-#!/usr/bin/pythom3
+#!/usr/bin/python3
