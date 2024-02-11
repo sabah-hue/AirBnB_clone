@@ -17,14 +17,15 @@ class BaseModel:
             models.storage.new(self)
         else:
             for key, value in kwargs.items():
-                if key != "__class__":
-                    if key == "created_at":
-                        v = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
-                        setattr(self, "created_at", v)
-                    if key == "updated_at":
-                        v = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
-                        setattr(self, "updated_at", v)
+                if key == "created_at":
+                    v = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
+                    setattr(self, "created_at", v)
+                elif key == "updated_at":
+                    v = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
+                    setattr(self, "updated_at", v)
+                elif key != "__class__":
                     setattr(self, key, value)
+                    """
                 if "id" not in kwargs.keys():
                     id_value = str(uuid.uuid4())
                     setattr(self, "id", id_value)
@@ -34,6 +35,7 @@ class BaseModel:
                 if "updated_at" not in kwargs.keys():
                     value = datetime.now()
                     setattr(self, "updated_at", value)
+                    """
 
     def __str__(self):
         """ print string """
@@ -48,6 +50,6 @@ class BaseModel:
         """ convert to dictionary """
         dict_data = self.__dict__.copy()
         dict_data['__class__'] = type(self).__name__
-        dict_data['created_at'] = self.created_at.isoformat()
-        dict_data['updated_at'] = self.updated_at.isoformat()
+        dict_data["created_at"] = self.created_at.isoformat()
+        dict_data["updated_at"] = self.updated_at.isoformat()
         return dict_data
