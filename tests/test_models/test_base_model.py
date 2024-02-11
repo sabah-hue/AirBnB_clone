@@ -22,3 +22,7 @@ class TestBaseModel(unittest.TestCase):
     def test_todict_type(self):
         """ test to dict is dictionary """
         self.assertTrue(type(BaseModel().to_dict()), dict)
+
+    def test_assign_value(self):
+        BaseModel.my_number = 89
+        self.assertEqual(BaseModel.my_number, 89)
