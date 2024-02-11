@@ -24,5 +24,19 @@ class TestBaseModel(unittest.TestCase):
         self.assertTrue(type(BaseModel().to_dict()), dict)
 
     def test_assign_value(self):
+        """ test assign value to property """
         BaseModel.my_number = 89
+        BaseModel.name = "sabah"
         self.assertEqual(BaseModel.my_number, 89)
+        self.assertEqual(BaseModel.name, "sabah")
+
+    def test_model(self):
+        """ test if instance from object is type model """
+        instance_model = BaseModel()
+        self.assertTrue(isinstance(instance_model, BaseModel))
+
+    def test_uniqe_id(self):
+        """ test uniqe id for each instance from class """
+        first = BaseModel()
+        second = BaseModel()
+        self.assertNotEqual(first.id, second.id)
