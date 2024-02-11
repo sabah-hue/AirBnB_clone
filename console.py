@@ -8,7 +8,7 @@ import sys
 
 class HBNBCommand(cmd.Cmd):
     """ class to interact with application"""
-    models_name = {'BaseModel': BaseModel, 'User': User}
+    model_name = {'BaseModel': BaseModel}
     prompt = "(hbnb) "
 
     def emptyline(self):
@@ -22,7 +22,7 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, arg):
         """ create new instance of basemodel """
         if arg:
-            if arg in models.models_name:
+            if arg in self.model_name:
                 current_class = eval(arg)()
                 current_class.save()
                 print(current_class.id)
