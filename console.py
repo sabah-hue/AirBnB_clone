@@ -1,10 +1,14 @@
 #!/usr/bin/python3
 """ console module """
 import cmd
+from  models.base_model import BaseModel
+import models
+import sys
 
 
 class HBNBCommand(cmd.Cmd):
     """ class to interact with application"""
+    models_name = {'BaseModel': BaseModel, 'User': User}
     prompt = "(hbnb) "
 
     def emptyline(self):
@@ -14,6 +18,18 @@ class HBNBCommand(cmd.Cmd):
     def do_quit(self, arg):
         """Quit command to exit the program"""
         return True
+
+    def do_create(self, arg):
+        """ create new instance of basemodel """
+        if arg:
+            if arg in models.models_name:
+                current_class = eval(arg)()
+                current_class.save()
+                print(current_class.id)
+            else:
+                print("** class doesn't exist **")
+        else:
+            print("** class name missing **")
 
     def do_EOF(self, arg):
         """EOF command to exit the program"""
