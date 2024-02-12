@@ -40,3 +40,23 @@ class TestBaseModel(unittest.TestCase):
         first = BaseModel()
         second = BaseModel()
         self.assertNotEqual(first.id, second.id)
+
+    def test_save_function(self):
+        """ test save function """
+        instance_model = BaseModel()
+        first = instance_model.updated_at
+        instance_model.save()
+        second = instance_model.updated_at
+        self.assertNotEqual(first, second)
+
+    def test_string(self):
+        """ test __str__ output """
+        i_model = BaseModel()
+        output = "[BaseModel] ({}) {}".format(i_model.id, i_model.__dict__)
+        self.assertEqual(output, str(i_model))
+
+    def test_to_dict_function(self):
+        """ test data convert to dictionary type """
+        i_model = BaseModel()
+        dict_data = i_model.to_dict()
+        self.assertTrue(isinstance(dict_data, dict))
