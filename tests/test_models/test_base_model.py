@@ -60,3 +60,5 @@ class TestBaseModel(unittest.TestCase):
         i_model = BaseModel()
         dict_data = i_model.to_dict()
         self.assertTrue(isinstance(dict_data, dict))
+
+    def test_
