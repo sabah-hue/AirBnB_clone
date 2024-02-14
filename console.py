@@ -110,7 +110,11 @@ class HBNBCommand(cmd.Cmd):
                         print("** value missing **")
                         return
                     my_attr = my_data[2]
-                    my_attr_value = getattr(models.storage.all()[class_k], my_attr)
+                    x = models.storage.all()
+                    new = data.split('"')
+                    my_attr_value = getattr(x[class_k], my_attr)
+                    setattr(x[class_k], my_attr, new[1])
+                    storage.save()
         else:
             print("** class name missing **")
 
